@@ -397,11 +397,37 @@
 
     <button onclick="goBack()">⬅️ Kembali</button>
   </div>
- <audio id="bgMusic" src="assets/queen_weare.m4a" autoplay loop></audio>
+ <audio id="bgMusic" src="assets/queen_weare.m4a" loop></audio>
 
 <script>
   function goBack() {
     window.location.href = "index.html";
   }
 
+  // ================================
+  // FIX AUTOPLAY AUDIO UNTUK iOS
+  // ================================
+  const music = document.getElementById("bgMusic");
+
+  function tryPlayMusic() {
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // iOS membutuhkan gesture
+        document.addEventListener("click", () => music.play(), { once: true });
+        document.addEventListener("touchstart", () => music.play(), { once: true });
+        document.addEventListener("scroll", () => music.play(), { once: true });
+      });
+    }
+  }
+
+  // coba play saat halaman selesai load
+  window.addEventListener("load", tryPlayMusic);
+
+  // cadangan: user tap layar → baru boleh play oleh iOS
+  document.addEventListener("touchstart", tryPlayMusic, { once: true });
+  document.addEventListener("click", tryPlayMusic, { once: true });
+  document.addEventListener("scroll", tryPlayMusic, { once: true });
 </script>
+

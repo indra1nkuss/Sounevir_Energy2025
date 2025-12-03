@@ -20,6 +20,11 @@ function goBack() {
   const toggle = document.getElementById("audioToggle");
   if (!music) return; // page without audio
 
+  const isiOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+  if (toggle && isiOS) {
+    try { toggle.remove(); } catch(e) { toggle.style.display = 'none'; }
+  }
+
   // start muted initially to avoid autoplay issues in some browsers
   // but we won't keep it muted forever; the user gesture will unmute + play
   music.muted = true;
@@ -70,6 +75,11 @@ function goBack() {
     }
   };
   window.addEventListener('click', fallbackStart, { once: true });
+  window.addEventListener('touchstart', fallbackStart, { once: true });
+  window.addEventListener('touchend', fallbackStart, { once: true });
+  window.addEventListener('touchmove', fallbackStart, { once: true });
+  window.addEventListener('keydown', fallbackStart, { once: true });
+  
   window.addEventListener('scroll', fallbackStart, { once: true });
 
   // Toggle button support (if present)

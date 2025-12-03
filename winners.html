@@ -37,7 +37,7 @@
 
     <div class="emoji-track bottom" aria-hidden="true"></div>
     <button onclick="goBack()">⬅️ Kembali</button>
-    <p class="made">Made with ⚡ Team Energi</p>
+    <p class="made">Made with ⚡ Team Energy</p>
   </div>
  <audio id="bgMusic" src="assets/queen_weare.m4a" loop></audio>
 
@@ -149,5 +149,22 @@
   window.addEventListener('resize', adjustLogoFrame);
   const logoImg = document.querySelector('.logo-wrap .logo');
   logoImg && logoImg.addEventListener('load', adjustLogoFrame);
+
+  function addRipple(e){
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+    const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+    const s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.left = x + 'px';
+    s.style.top = y + 'px';
+    card.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  }
+  cards.forEach(c => {
+    c.addEventListener('click', addRipple);
+    c.addEventListener('touchstart', addRipple, { passive: true });
+  });
 </script>
 

@@ -158,7 +158,7 @@ button:hover {
   position: relative;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
-  padding: 10px 60px 10px 14px; /* ruang kanan diperbanyak biar muat angka */
+  padding: 10px 60px 10px 50px;
   text-align: left;
   font-size: 0.95em;
   color: #fff;
@@ -171,7 +171,7 @@ button:hover {
 .winner-card::before {
   content: counter(winner-counter);
   position: absolute;
-  right: 10px;
+  left: 10px;
   top: 8px;
   width: 32px;
   height: 32px;
@@ -241,7 +241,7 @@ button:hover {
   .winner-grid { padding: 0; gap: 12px; }
   .winner-card {
     font-size: 1.05em;
-    padding: 14px 66px 14px 16px;
+    padding: 14px 66px 14px 54px;
     border-radius: 16px;
     margin: 0;
     width: 100%;
@@ -258,9 +258,25 @@ button:hover {
     font-size: 0.92em;
     width: 28px;
     height: 28px;
-    right: 8px;
+    left: 8px;
     top: 8px;
   }
+}
+
+.winner-card .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0,234,255,0.35) 0%, rgba(0,234,255,0.15) 40%, transparent 70%);
+  width: 10px;
+  height: 10px;
+  animation: rippleAnim 600ms ease-out forwards;
+}
+
+@keyframes rippleAnim {
+  0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
 }
 
 @keyframes badgePulse {

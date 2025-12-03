@@ -52,10 +52,12 @@ function goBack() {
           window.removeEventListener('pointerdown', startOnGesture);
           window.removeEventListener('touchstart', startOnGesture);
           window.removeEventListener('click', startOnGesture);
+          window.removeEventListener('scroll', startOnGesture);
         };
         window.addEventListener('pointerdown', startOnGesture, { once: true });
         window.addEventListener('touchstart', startOnGesture, { once: true });
         window.addEventListener('click', startOnGesture, { once: true });
+        window.addEventListener('scroll', startOnGesture, { once: true });
       });
     }
   });
@@ -68,6 +70,7 @@ function goBack() {
     }
   };
   window.addEventListener('click', fallbackStart, { once: true });
+  window.addEventListener('scroll', fallbackStart, { once: true });
 
   // Toggle button support (if present)
   if (toggle) {

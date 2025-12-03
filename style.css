@@ -220,25 +220,30 @@ button:hover {
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 16px;
+  body.winners .container {
+    padding: 8px 0;
     min-height: unset;
-    width: 96%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
   }
 
+  .winner-grid { padding: 0; gap: 12px; }
   .winner-card {
-    font-size: 1.02em;
+    font-size: 1.05em;
     padding: 14px 66px 14px 16px;
+    border-radius: 16px;
+    margin: 0;
+    width: 100%;
   }
 
-  .logo {
-    max-width: 320px;
-    max-height: 110px;
-  }
+  .logo { max-width: 300px; max-height: 100px; }
 
   .logo-wrap { margin-bottom: 22px; }
 
-  h1 { font-size: 1.22em; }
+  h1 { font-size: 1.18em; }
   p { font-size: 0.9em; }
 
   .winner-card::before {

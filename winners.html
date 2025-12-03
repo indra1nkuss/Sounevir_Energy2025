@@ -140,7 +140,10 @@
     const wrap = document.querySelector('.logo-wrap');
     if (!img || !wrap) return;
     const rect = img.getBoundingClientRect();
-    const diam = Math.max(rect.width, rect.height) + 8;
+    let diam = Math.max(rect.width, rect.height) + 8;
+    if (window.innerWidth <= 480) {
+      diam = Math.min(diam, 100);
+    }
     wrap.style.setProperty('--logoDiam', diam + 'px');
   }
   window.addEventListener('load', adjustLogoFrame);

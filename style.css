@@ -221,20 +221,32 @@ button:hover {
 
 @media (max-width: 480px) {
   .container {
-    padding: 18px;
+    padding: 16px;
     min-height: unset;
+    width: 96%;
   }
 
   .winner-card {
-    font-size: 0.88em;
+    font-size: 1.02em;
+    padding: 14px 66px 14px 16px;
   }
 
   .logo {
-    max-width: 300px;
+    max-width: 320px;
+    max-height: 110px;
   }
 
-  h1 { font-size: 1.25em; }
+  .logo-wrap { margin-bottom: 22px; }
+
+  h1 { font-size: 1.22em; }
   p { font-size: 0.9em; }
+
+  .winner-card::before {
+    font-size: 1.4em;
+    right: 10px;
+    top: 8px;
+    min-width: 32px;
+  }
 }
 
 body.winners::before {
